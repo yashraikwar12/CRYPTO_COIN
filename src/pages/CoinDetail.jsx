@@ -19,6 +19,8 @@ const CoinDetail = () => {
   const [coin, setCoin] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [chartData, setChartData] = useState([]);
+  const [hoveredPrice, setHoveredPrice] = useState(null);
+
   useEffect(() => {
     loadCoinData();
     loadChartData();
@@ -41,12 +43,15 @@ const CoinDetail = () => {
       const data = await fetchChartData(id);
 
       const formattedData = data.prices.map((price) => ({
-        time: new Date(price[0]).toLocaleDateString("en-US", {
+        time: new Date(price[0]).toLocaleString("en-US", {
           month: "short",
           day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
         }),
         price: Number(price[1].toFixed(2)),
       }));
+
       setChartData(formattedData);
     } catch (err) {
       console.log("Error fetching crypto: ", err);
@@ -135,21 +140,25 @@ const CoinDetail = () => {
           <ResponsiveContainer width="100%" height={400}>
             <LineChart data={chartData}>
               <CartesianGrid
-                strokeDasharray="2 2"
-                stroke="#ADD8E6"
+                strokeDasharray="3 2"
+                // stroke="rgba(255, 255, 255, 0.1)"
+                 stroke="#ADD8E6"
                 strokeWidth={0.4}
               />
               <XAxis
                 stroke="#9ca3af"
                 style={{ fontSize: "12px" }}
                 dataKey="time"
+                interval={30}
               />
               <YAxis
+                dataKey="price"
                 stroke="#9ca3af"
                 style={{ fontSize: "12px" }}
                 domain={["auto", "auto"]}
               />
               <Tooltip
+                formatter={(value) => `$${value}`}
                 contentStyle={{
                   backgroundColor: "rgba(20, 20, 40, 0.95)",
                   border: "1px solid rgba(255, 255, 255, 0.1)",
@@ -157,12 +166,17 @@ const CoinDetail = () => {
                   color: "#e0e0e0",
                 }}
               />
+
               <Line
                 dataKey="price"
                 type="monotone"
                 stroke="#ADD8E6"
                 dot={false}
-                activeDot={false}
+                activeDot={{
+                  r: 6,
+                  fill: "transparent",
+                  stroke: "transparent",
+                }}
               />
             </LineChart>
           </ResponsiveContainer>
