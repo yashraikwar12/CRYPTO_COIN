@@ -19,11 +19,12 @@ const CoinDetail = () => {
   const [coin, setCoin] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [chartData, setChartData] = useState([]);
-  const [hoveredPrice, setHoveredPrice] = useState(null);
 
   useEffect(() => {
     loadCoinData();
     loadChartData();
+    console.log('2');
+    
   }, [id]);
 
   const loadCoinData = async () => {
@@ -70,10 +71,10 @@ const CoinDetail = () => {
   }
   if (!coin) {
     return (
-      <div className="app">
-        <div className="no-result">
-          <p>Coin not found</p>
-          <button onClick={() => navigate("/")}>Go Back</button>
+      <div className="app" >
+        <div className="no-results">
+          <p >Coin not found...</p>
+          <button className="back-button" onClick={() => navigate("/")}>Go Back</button>
         </div>
       </div>
     );

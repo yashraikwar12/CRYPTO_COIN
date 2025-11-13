@@ -22,6 +22,7 @@ const Home = () => {
   };
   useEffect(() => {
     fetchCryptoData();
+    console.log("1");
   }, []);
 
   useEffect(() => {
@@ -54,25 +55,25 @@ const Home = () => {
 
   return (
     <div className="app">
-      <a href="/" style={{ textDecoration: "none" }}>
-        <header className="header">
-          <div className="header-content">
-            <div className="logo-section">
+      <header className="header">
+        <div className="header-content">
+          <div className="logo-section">
+            <a href="/" style={{ textDecoration: "none" }}>
               <h1>🚀 Crypto Tracker</h1>
               <p>Real-time cryptocurrency prices and market data</p>
-            </div>
-            <div className="search-section">
-              <input
-                onChange={(e) => setSearch(e.target.value)}
-                value={search}
-                type="text"
-                placeholder="Search Cryptos..."
-                className="search-input"
-              />
-            </div>
+            </a>
           </div>
-        </header>
-      </a>
+          <div className="search-section">
+            <input
+              onChange={(e) => setSearch(e.target.value)}
+              value={search}
+              type="text"
+              placeholder="Search Cryptos..."
+              className="search-input"
+            />
+          </div>
+        </div>
+      </header>
       <div className="controls">
         <div className="filter-group">
           <label> Sort by:</label>
@@ -108,9 +109,13 @@ const Home = () => {
         </div>
       ) : (
         <div className={`crypto-container ${viewMode}`}>
-          {filteredList.map((crypto, key) => (
-            <CryptoCard crypto={crypto} key={key} />
-          ))}
+          {filteredList.length > 0 ? (
+            filteredList.map((crypto, key) => (
+              <CryptoCard crypto={crypto} key={key} />
+            ))
+          ) : (
+            <div className="no-results">Result not found...</div>
+          )}
         </div>
       )}
     </div>
