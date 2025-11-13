@@ -162,6 +162,7 @@ const CoinDetail = () => {
                 type="monotone"
                 stroke="#ADD8E6"
                 dot={false}
+                activeDot={false}
               />
             </LineChart>
           </ResponsiveContainer>
