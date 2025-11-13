@@ -36,8 +36,6 @@ const CoinDetail = () => {
       setIsLoading(false);
     }
   };
-  console.log(coin);
-
   const loadChartData = async () => {
     try {
       const data = await fetchChartData(id);
