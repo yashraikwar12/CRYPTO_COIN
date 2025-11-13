@@ -54,23 +54,25 @@ const Home = () => {
 
   return (
     <div className="app">
-      <header className="header">
-        <div className="header-content">
-          <div className="logo-section">
-            <h1>🚀 Crypto Tracker</h1>
-            <p>Real-time cryptocurrency prices and market data</p>
+      <a href="/" style={{ textDecoration: "none" }}>
+        <header className="header">
+          <div className="header-content">
+            <div className="logo-section">
+              <h1>🚀 Crypto Tracker</h1>
+              <p>Real-time cryptocurrency prices and market data</p>
+            </div>
+            <div className="search-section">
+              <input
+                onChange={(e) => setSearch(e.target.value)}
+                value={search}
+                type="text"
+                placeholder="Search Cryptos..."
+                className="search-input"
+              />
+            </div>
           </div>
-          <div className="search-section">
-            <input
-              onChange={(e) => setSearch(e.target.value)}
-              value={search}
-              type="text"
-              placeholder="Search Cryptos..."
-              className="search-input"
-            />
-          </div>
-        </div>
-      </header>
+        </header>
+      </a>
       <div className="controls">
         <div className="filter-group">
           <label> Sort by:</label>

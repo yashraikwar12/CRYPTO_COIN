@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { fetchChartData, fetchCoinData } from "../api/CoinGecko";
 import { formatMarketCap, formatPrice } from "../utils/formatter";
 import {
@@ -84,17 +84,19 @@ const CoinDetail = () => {
   const isPositive = priceChange >= 0;
   return (
     <div className="app">
-      <header className="header">
-        <div className="header-content">
-          <div className="logo-section">
-            <h1>🚀 Crypto Tracker</h1>
-            <p>Real-time cryptocurrency prices and market data</p>
+      <Link to="/" style={{ textDecoration: "none" }}>
+        <header className="header">
+          <div className="header-content">
+            <div className="logo-section">
+              <h1>🚀 Crypto Tracker</h1>
+              <p>Real-time cryptocurrency prices and market data</p>
+            </div>
+            <button className="back-button" onClick={() => navigate("/")}>
+              ⬅Back to List
+            </button>
           </div>
-          <button className="back-button" onClick={() => navigate("/")}>
-            ⬅Back to List
-          </button>
-        </div>
-      </header>
+        </header>
+      </Link>
       <div className="coin-detail">
         <div className="coin-header">
           <div className="coin-title">
@@ -142,7 +144,7 @@ const CoinDetail = () => {
               <CartesianGrid
                 strokeDasharray="3 2"
                 // stroke="rgba(255, 255, 255, 0.1)"
-                 stroke="#ADD8E6"
+                stroke="#ADD8E6"
                 strokeWidth={0.4}
               />
               <XAxis
