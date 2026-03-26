@@ -23,8 +23,6 @@ const CoinDetail = () => {
   useEffect(() => {
     loadCoinData();
     loadChartData();
-    console.log('2');
-    
   }, [id]);
 
   const loadCoinData = async () => {
@@ -73,7 +71,7 @@ const CoinDetail = () => {
     return (
       <div className="app" >
         <div className="no-results">
-          <p >Coin not found...</p>
+          <p >Coin not found... API rate limit excceded</p>
           <button className="back-button" onClick={() => navigate("/")}>Go Back</button>
         </div>
       </div>

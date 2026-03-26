@@ -22,7 +22,6 @@ const Home = () => {
   };
   useEffect(() => {
     fetchCryptoData();
-    console.log("1");
   }, []);
 
   useEffect(() => {
@@ -114,7 +113,7 @@ const Home = () => {
               <CryptoCard crypto={crypto} key={key} />
             ))
           ) : (
-            <div className="no-results">Result not found...</div>
+            <div className="no-results">Result not found... API rate limit exceeded</div>
           )}
         </div>
       )}
